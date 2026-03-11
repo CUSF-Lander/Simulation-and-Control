@@ -1,0 +1,26 @@
+[33mcommit c5eb24439bd0382c21b17bde7aca4509e3b024ed[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Merge: 64baf1b f8247ab
+Author: dparodi935 <dparodi935@gmail.com>
+Date:   Wed Mar 11 16:27:47 2026 +0000
+
+    Merge branch 'main' of github.com:CUSF-Lander/Simulation-and-Control
+    
+    Connecting remote branch to local one
+
+[33mcommit 64baf1bbf7aa9cdfa0a62a2023e002939e189d94[m
+Author: dparodi935 <dparodi935@gmail.com>
+Date:   Wed Mar 11 16:26:53 2026 +0000
+
+    Local changes
+
+[33mcommit f8247abd02947bd376dc32a45d0992963ccb3579[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: dparodi935 <dparodi935@gmail.com>
+Date:   Wed Mar 11 15:14:48 2026 +0000
+
+    Add files via upload
+
+[33mcommit 9ac01e6f34b2b2fca080a56c4e7cc801ea576388[m
+Author: Yoonjae Hwang <yh583@cam.ac.uk>
+Date:   Sat Mar 7 16:29:08 2026 +0000
+
+    First commit
