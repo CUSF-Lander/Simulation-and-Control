@@ -25,7 +25,7 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, last_gps_val, in
 
     % Prediction update
     g_correction = zeros(18,1);
-    g_correction(15) = -params.g*0;
+    g_correction(15) = -params.g; % to activate landed mode, set this to zero
     x_pred = A * x_estimate + 0.5*B * inputs + g_correction;
     fprintf('\n\nPredicted z acceleration  = %f', x_pred(15));
 
