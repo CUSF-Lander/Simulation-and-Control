@@ -9,4 +9,8 @@ simulink_vars;
 expanded_jacobian;
 offline_kalman_expanded;
 
+%Generate control variables
+new_strategy;
+
 fprintf('Drone Project Environment Loaded.\n');
+

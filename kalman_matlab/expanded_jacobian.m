@@ -15,7 +15,7 @@ A_sym = jacobian(dx_sym, state_sym);
 B_sym = jacobian(dx_sym, input_sym);
 H_imu_sym = jacobian(z_imu_sym, state_sym);
 
-matlabFunction(A_sym, B_sym, H_imu_sym, 'File', 'calc_Jacobians', 'Vars', {state_sym, input_sym});
+matlabFunction(A_sym, B_sym, H_imu_sym, 'File', 'get_Jacobians', 'Vars', {state_sym, input_sym});
 % equilibrium point
 x_eq = zeros(18,1);
 

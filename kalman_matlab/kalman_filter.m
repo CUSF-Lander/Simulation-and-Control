@@ -15,7 +15,7 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, last_gps_val, in
     end
     
     %retrieves A, B, and H_imu matrices
-    [A,B, H_imu] = calc_Jacobians(x_estimate, inputs);
+    [A,B, H_imu] = get_Jacobians(x_estimate, inputs);
 
     % Calculates rotation matrix from body to world frame, input: roll, pitch, yaw
     p = x_estimate(4); q = x_estimate(5); u = x_estimate(6);     
