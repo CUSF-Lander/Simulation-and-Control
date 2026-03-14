@@ -2,7 +2,7 @@
 % Add project subfolders to path
 addpath(genpath('sensors'));     % genpath adds the folder and all its subfolders
 
-% Run your variable initialization
+% Run variable initialization
 simulink_vars; 
 
 %Generate matrices
