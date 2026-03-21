@@ -1,4 +1,4 @@
-%% Linearization
+    %% Linearization
 
 syms x x2 x3 p q u vx vy vz wx wy wz ax ay az ix iy iz
 syms a1 a2 wt1 wt2 

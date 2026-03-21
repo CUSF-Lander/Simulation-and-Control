@@ -1,6 +1,7 @@
 %clc
 %clear
 
+
 syms x y z vx vy vz phi theta psi wx wy wz % states
 syms F1 F2 F3 Mz % inputs
 syms m Jx Jy Jz c r g% parameters
@@ -52,8 +53,6 @@ r_og = [0; 0; -r];
 
 % total torque
 total_moment = cross(r_og, force1) + moment;
-
-
 
 
 %% Equations of motion
@@ -186,14 +185,13 @@ D3_int = zeros(6,2);
 
 
 
-Q_hor = diag([100, 100, 10.0, 10.0, 10.0, 10.0]);
-R_hor = diag([100, 100]);
+Q_hor = diag([1e7, 1e7, 1e4, 1e4, 30.0, 30.0]);
+R_hor = diag([1e9, 1e9]);
 
 sys_hor_ss = ss(A3_sys, B3_sys, C3_sys, D3_sys);
 sys_hor_int = ss(A3_int, B3_int, C3_int, D3_int);
 
 K_hor = lqr(sys_hor_int, Q_hor, R_hor);
 disp(K_hor)
-
 
 

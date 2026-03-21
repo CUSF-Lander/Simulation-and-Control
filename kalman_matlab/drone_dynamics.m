@@ -71,8 +71,9 @@ function dx = drone_dynamics(state, inputs, params)
     nw = [p q u].';     % Attitude (world frame)
     wb = [wx wy wz].';  % Angular velocity (body frame)
     pw = [x y z].';     % Position (world frame)
-    vb = [vx vy vz].';  % Velocity (body frame)    
-
+    %vb = [vx vy vz].';  % Velocity (body frame)    
+    vw = [vx vy vz].';  % Velocity (world frame)    
+    
     
     %% Rotational dynamics
     
@@ -81,7 +82,7 @@ function dx = drone_dynamics(state, inputs, params)
     
     %% Translational dynamics
     
-    pw_dot = R * vb;
+    pw_dot = vw;%R * vb;
     vb_dot = 1/m * ( fb -  R.' * [0 0 m*g].');
     
     vw_dot = R * vb_dot;

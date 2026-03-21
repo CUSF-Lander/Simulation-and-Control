@@ -77,7 +77,7 @@ function next_state = expanded_drone_dynamics(state, inputs, params)
     
     % State vectors used for derivation
     pw = [x y z].';     % Position (world frame)
-    vw = [vx vy vz].';  % Velocity (body frame)   % NEED TO SWITCH TO WORLD FRAME
+    vw = [vx vy vz].';  % Velocity (world frame) 
     nw = [p q u].';     % Attitude (world frame)
     wb = [wx wy wz].';  % Angular velocity (body frame) 
 

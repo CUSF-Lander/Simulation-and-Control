@@ -1,4 +1,8 @@
 % startup.m
+
+clc
+clear
+
 % Add project subfolders to path
 addpath(genpath('sensors'));     % genpath adds the folder and all its subfolders
 
@@ -10,7 +14,7 @@ expanded_jacobian;
 offline_kalman_expanded;
 
 %Generate control variables
-new_strategy;
+new_strategy_integrated;
 
 fprintf('Drone Project Environment Loaded.\n');
 

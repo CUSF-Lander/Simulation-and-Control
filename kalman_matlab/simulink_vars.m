@@ -1,13 +1,13 @@
 % Drone Constants
-Kt = 0.2;      % N / (1/s^2) 
-Jx = 0.01;          % Kg * m^2
-Jy = 0.01;    % Kg * m^2
-Jz = 0.03;    % Kg * m^2
-m = 0.75;           % Kg
+Kt = 0.021;      % N / (1/s^2) 
+Jx = 0.1;          % Kg * m^2
+Jy = 0.1;    % Kg * m^2
+Jz = 0.3;    % Kg * m^2
+m = 1.0;           % Kg
 g = 9.807;          % m/s^2
 a = 0.1;            % m
-b = 0.1;            % m 
-Km = 0.2;          % Moment arm constant
+b = 0;            % m 
+Km = 1.05e-3;          % Moment arm constant
 
 params = struct();
 
@@ -32,7 +32,7 @@ process_noise_variance = 0.0001; %this is only the noise in the acceleration - V
 initial_noise = 0.0001;
 
 % ERROR SQUARED
-imu_variance = [0.029,0.029,0.029,0.1225,0.1225,0.1225,0.0037,0.0037,0.0037]; %angular velocity, linear acceleration, angular acceleration
+imu_variance = [0.0037,0.0037,0.0037,0.1225,0.1225,0.1225,0.0029,0.0029,0.0029]; %angular velocity, linear acceleration, angular acceleration
 barometer_variance = [0.0625]; % 25 cm error
 gps_variance = 0.0025 * ones(1,3); % 5 cm error
 
