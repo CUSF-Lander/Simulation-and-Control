@@ -1,7 +1,4 @@
-%% Kalman filter design parameters
-
-% State Vectir
-% x = [x y z vx vy vz]
+%% Calculates kalman gain at equlibrium
 
 % Sample time
 dt = 0.01; 
@@ -18,8 +15,8 @@ C_imu = C_numeric; % IMU
 C_barometer = [0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]; % barometer
 
 C_gps = [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
-     0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
-     0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]; % gps
+         0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+         0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]; % gps
        
 C_100 = [C_imu; C_barometer];
 C_20 = [C_imu; C_barometer; C_gps];

@@ -25,11 +25,19 @@ params.b  = b;
 weight = m*g;
 stationary_wt = sqrt(weight/(Kt * 2));
 
-% control input: [a1 a2 wt1 wt 2]
-% wt 1 and 2 are rotor rotation rates
+%% EQUILIBRIUM
 
+% equilibrium point
+x_eq = zeros(18,1);
+x_eq(3) = 3;
+
+% Calculate motor speed (wt) needed to hover: Ft = Kt*(wt1^2 + wt2^2) = m*g
+u_eq = [0; 0; stationary_wt; stationary_wt]; 
+%u_eq = [0; 0; 0; 0]; 
 process_noise_variance = 0.0001; %this is only the noise in the acceleration - VARIANCE?
-initial_noise = 0.0001;
+initial_noise = 0.000001;
+
+%% Sensors
 
 % ERROR SQUARED
 imu_variance = [0.0037,0.0037,0.0037,0.1225,0.1225,0.1225,0.0029,0.0029,0.0029]; %angular velocity, linear acceleration, angular acceleration
@@ -45,3 +53,5 @@ ekf_sample_time = min([imu_sample_time, barometer_sample_time, gps_sample_time])
 imu_drift = [0.0,0.0,0.0,0.00,0.00,0.00,0.0,0.0,0.0]; %angular velocity, linear acceleration, angular acceleration
 
 %imu_drift = zeros(9,1);
+
+

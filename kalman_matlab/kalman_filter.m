@@ -1,4 +1,4 @@
-function [x_estimate, last_gps_val] = kalman_filter(x_estimate, last_gps_val, inputs, z_imu, z_barometer, z_gps, kf_20, kf_100, params, C_barometer, C_gps)
+function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps_val, z_imu, z_barometer, z_gps, kf_20, kf_100, params, C_barometer, C_gps)
     coder.extrinsic('fprintf');
 
     %Check if there is a new gps value
@@ -15,7 +15,7 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, last_gps_val, in
     end
     
     %retrieves A, B, and H_imu matrices
-    [A,B, H_imu] = get_Jacobians(x_estimate, inputs);
+    [A, B, H_imu] = get_Jacobians(x_estimate, inputs);
 
     % Calculates rotation matrix from body to world frame, input: roll, pitch, yaw
     p = x_estimate(4); q = x_estimate(5); u = x_estimate(6);     
@@ -23,10 +23,11 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, last_gps_val, in
          cos(q)*sin(u), sin(p)*sin(q)*sin(u)+cos(p)*cos(u), cos(p)*sin(q)*sin(u)-sin(p)*cos(u) ;
          -sin(q),       sin(p)*cos(q),                      cos(p)*cos(q)                     ];
 
-    % Prediction update
     g_correction = zeros(18,1);
     g_correction(15) = -params.g; % to activate landed mode, set this to zero
-    x_pred = A * x_estimate + 0.5*B * inputs + g_correction;
+    
+    % Prediction update
+    x_pred = A * x_estimate + 0.5 * B * inputs + g_correction;
     fprintf('\n\nPredicted z acceleration  = %f', x_pred(15));
 
     % Convert imu measurements from body to world frame

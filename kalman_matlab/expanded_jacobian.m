@@ -16,12 +16,7 @@ B_sym = jacobian(dx_sym, input_sym);
 H_imu_sym = jacobian(z_imu_sym, state_sym);
 
 matlabFunction(A_sym, B_sym, H_imu_sym, 'File', 'get_Jacobians', 'Vars', {state_sym, input_sym});
-% equilibrium point
-x_eq = zeros(18,1);
 
-% Calculate motor speed (wt) needed to hover: Ft = Kt*(wt1^2 + wt2^2) = m*g
-u_eq = [0; 0; stationary_wt; stationary_wt]; 
-%u_eq = [0; 0; 0; 0]; 
 
 % Convert to Numerical Matrices (All discretized already)
 A_numeric = double(subs(A_sym, [state_sym; input_sym], [x_eq; u_eq]));

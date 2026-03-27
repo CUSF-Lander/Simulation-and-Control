@@ -2,9 +2,9 @@
 %clear
 
 
-syms x y z vx vy vz phi theta psi wx wy wz % states
-syms F1 F2 F3 Mz % inputs
-syms m Jx Jy Jz c r g% parameters
+syms x y z vx vy vz phi theta psi wx wy wz  % states
+syms F1 F2 F3 Mz  % inputs
+syms m Jx Jy Jz c r g  % parameters
 
 %% Definitions 
 % --- 1. Rotation Matrix R (Body to World: Z-Y-X Convention) ---
@@ -113,8 +113,7 @@ x = 0; y= 0; z = 0.0; vx = 0; vy = 0; vz = 0.0; phi = 0; theta = 0; psi = 0; wx 
 
 
 % initial state
-X0 = [0;0;0; 0;0;0; 0;0;0; 0;0;0];
-
+X0 = [0;0;3; 0;0;0; 0;0;0; 0;0;0];
 F1 = 0; F2 = 0; F3 = 9.81; Mz = 0; 
 
 A_numeric = subs(A);
