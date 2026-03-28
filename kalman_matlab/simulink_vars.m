@@ -34,8 +34,13 @@ x_eq(3) = 3;
 % Calculate motor speed (wt) needed to hover: Ft = Kt*(wt1^2 + wt2^2) = m*g
 u_eq = [0; 0; stationary_wt; stationary_wt]; 
 %u_eq = [0; 0; 0; 0]; 
-process_noise_variance = 0.0001; %this is only the noise in the acceleration - VARIANCE?
+process_noise_variance = 0.01; %this is only the noise in the acceleration - VARIANCE?
 initial_noise = 0.000001;
+
+
+% Initial State
+X0 = [0;0;3; 0;0;0; 0;0;0; 0;0;0];
+U_initial = [0;0;9.81;0]; %In terms of new control scheme
 
 %% Sensors
 
