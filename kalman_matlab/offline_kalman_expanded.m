@@ -23,7 +23,9 @@ C_20 = [C_imu; C_barometer; C_gps];
 C = C_imu;
 
 % Process Noice Covariance-Q
-Q = eye(18)*process_noise_variance;
+process_noise_vector = zeros(18,1);
+process_noise_vector(13:18,1) = process_noise_variance;
+Q = diag(process_noise_vector); %process_noise_variance;
 
 % Measurement Noise Covariance-R
 R = diag(imu_variance);
@@ -32,7 +34,7 @@ R_20 = diag([imu_variance barometer_variance gps_variance]);
 
 % Process Noise Distribution Matrix. - Noise enters only in acceleration
 G = zeros(18, 18); 
-G(13:18, 1:6) = eye(6); 
+G(13:18, 13:18) = eye(6); 
 
 % Calculate discrete steady-state kalman gain
 A_nudge = A * 0.9999; %dirty step to avoid error
