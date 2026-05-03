@@ -194,3 +194,6 @@ sys_hor_int = ss(A3_int, B3_int, C3_int, D3_int);
 
 K_hor = lqr(sys_hor_int, Q_hor, R_hor);
 disp(K_hor)
+
+
+
