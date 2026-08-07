@@ -27,7 +27,7 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps
     g_correction(15) = -params.g; % to activate landed mode, set this to zero
     
     % Prediction update
-    x_pred = A * x_estimate + 0.5 * B * inputs + g_correction;
+    x_pred = A * x_estimate + 0.5 * B * inputs;
     fprintf('\n\nPredicted z acceleration  = %f', x_pred(15));
 
     % Convert imu measurements from body to world frame
@@ -40,11 +40,11 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps
 
         z = [z_imu; z_barometer; z_gps];
 
-        x_estimate = x_pred + kf_20 * (z - C_20_calc * (x_pred - g_correction));
+        x_estimate = x_pred + kf_20 * (z - C_20_calc * (x_pred)) + g_correction;
     else
         C_100_calc = [H_imu; C_barometer];
         z = [z_imu; z_barometer];
-        x_estimate = x_pred + kf_100 * (z - C_100_calc * (x_pred - g_correction)); 
+        x_estimate = x_pred + kf_100 * (z - C_100_calc * (x_pred)) + g_correction; 
     end
     fprintf('\nEstimated z acceleration  = %f', x_estimate(15));
 end

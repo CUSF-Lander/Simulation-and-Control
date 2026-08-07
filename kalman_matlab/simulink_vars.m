@@ -46,7 +46,7 @@ U_initial = [0;0;9.81;0]; %In terms of new control scheme
 %% Sensors
 
 % ERROR SQUARED
-imu_variance = [0.0037,0.0037,0.0037,0.1225,0.1225,0.1225,0.0029,0.0029,0.0029]; %angular velocity, linear acceleration, angular acceleration
+imu_variance = [0.0037,0.0037,0.0037,0.1225,0.1225,0.1225,0.0029,0.0029,0.0029]; %euler angles, linear acceleration, angular velocity
 barometer_variance = [0.0625]; % 25 cm error
 gps_variance = 0.0025 * ones(1,3); % 5 cm error
 
