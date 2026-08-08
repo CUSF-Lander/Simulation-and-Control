@@ -6,12 +6,12 @@ clear
 % Add project subfolders to path
 addpath(genpath('sensors'));     % genpath adds the folder and all its subfolders
 
-% Run variable initialization
+% Run variable initialization   
 simulink_vars; 
 
 %Generate matrices
-expanded_jacobian;
-offline_kalman_expanded;
+generate_jacobians;
+calculate_kalman_gain;
 
 %Generate control variables
 new_strategy_integrated;

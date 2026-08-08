@@ -1,4 +1,4 @@
-function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps_val, z_imu, z_barometer, z_gps, kf_20, kf_100, params, C_barometer, C_gps)
+function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps_val, z_imu, z_barometer, z_gps, kf_20, kf_100, params, H_barometer, H_gps)
     coder.extrinsic('fprintf');
 
     %Check if there is a new gps value
@@ -22,9 +22,6 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps
     R = [cos(q)*cos(u), sin(p)*sin(q)*cos(u)-cos(p)*sin(u), cos(p)*sin(q)*cos(u)+sin(p)*sin(u) ;
          cos(q)*sin(u), sin(p)*sin(q)*sin(u)+cos(p)*cos(u), cos(p)*sin(q)*sin(u)-sin(p)*cos(u) ;
          -sin(q),       sin(p)*cos(q),                      cos(p)*cos(q)                     ];
-
-    g_correction = zeros(18,1);
-    g_correction(15) = -params.g; % to activate landed mode, set this to zero
     
     % Prediction update
     x_pred = A * x_estimate + 0.5 * B * inputs;
@@ -34,18 +31,26 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps
     zw_acc = R * z_imu(4:6);
     z_imu = [z_imu(1:3);zw_acc;z_imu(7:9)];
         
-    % Measurement update
-    if gps_present
-        C_20_calc = [H_imu; C_barometer; C_gps];
-
+    % Define measurement matrix and vector depending on if gps has updated
+    if gps_present 
+        H = [H_imu; H_barometer; H_gps];
         z = [z_imu; z_barometer; z_gps];
-
-        x_estimate = x_pred + kf_20 * (z - C_20_calc * (x_pred)) + g_correction;
+        kf = kf_20;
     else
-        C_100_calc = [H_imu; C_barometer];
+        H = [H_imu; H_barometer];
         z = [z_imu; z_barometer];
-        x_estimate = x_pred + kf_100 * (z - C_100_calc * (x_pred)) + g_correction; 
+        kf = kf_100;
     end
+
+    % Innovation calculation
+    innov = z - H * x_pred;
+
+    % Measurement Update
+    g_correction = zeros(18,1);
+    g_correction(15) = -params.g; % to activate landed mode, set this to zerof
+
+    x_estimate = x_pred + kf * (innov) + g_correction;
+
     fprintf('\nEstimated z acceleration  = %f', x_estimate(15));
 end
 
