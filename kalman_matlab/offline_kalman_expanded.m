@@ -1,7 +1,7 @@
 %% Calculates kalman gain at equlibrium
 
 % Sample time
-dt = 0.01; 
+%dt = 0.01; 
 
 % System Matrix-A 
 A = A_numeric;

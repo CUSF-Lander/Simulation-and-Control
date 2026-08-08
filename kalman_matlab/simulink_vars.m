@@ -9,6 +9,9 @@ a = 0.1;            % m
 b = 0;            % m 
 Km = 1.05e-3;          % Moment arm constant
 
+% Time step
+dt = 0.01;
+
 params = struct();
 
 params.m  = m;   
@@ -20,7 +23,7 @@ params.Jy = Jy;
 params.Jz = Jz;    
 params.a  = a;     
 params.b  = b;     
-
+params.dt = dt;
 
 weight = m*g;
 stationary_wt = sqrt(weight/(Kt * 2));

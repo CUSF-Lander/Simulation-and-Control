@@ -1,5 +1,6 @@
 function next_state = expanded_drone_dynamics(state, inputs, params)
-    dt = 0.01;
+    %dt = 0.01;
+    dt = params.dt; 
     
     %% POSITION COMPONENT OF STATE VECTOR IS IN WORLD FRAME 
     %%
