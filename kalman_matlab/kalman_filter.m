@@ -25,7 +25,6 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps
     
     % Prediction update
     x_pred = A * x_estimate + 0.5 * B * inputs;
-    fprintf('\n\nPredicted z acceleration  = %f', x_pred(15));
 
     % Convert imu measurements from body to world frame
     zw_acc = R * z_imu(4:6);
@@ -51,7 +50,10 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps
 
     x_estimate = x_pred + kf * (innov) + g_correction;
 
+    fprintf('\n\nPredicted z acceleration  = %f', x_pred(15));
     fprintf('\nEstimated z acceleration  = %f', x_estimate(15));
+    delta = x_pred(15) - x_estimate(15);
+    fprintf('\nDelta z accceleration = %f', delta);
 end
 
  
