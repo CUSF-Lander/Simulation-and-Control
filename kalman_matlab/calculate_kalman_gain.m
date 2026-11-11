@@ -19,7 +19,7 @@ H_100 = [H_imu; H_barometer];       % 100Hz Measurement Matrix (excludes gps)
 H_20 = [H_imu; H_barometer; H_gps]; % 20Hz Measurement Matrix (includes gps)
 H = H_imu;
 
-% Process Noice Covariance-Q
+% Process Noise Covariance-Q
 process_noise_vector = zeros(18,1);
 process_noise_vector(13:18,1) = process_noise_variance;
 Q = diag(process_noise_vector);

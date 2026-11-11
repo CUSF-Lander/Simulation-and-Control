@@ -44,8 +44,8 @@ stationary_wt = sqrt(weight/(Kt * 2));
 u_eq = [0; 0; stationary_wt; stationary_wt]; 
 
 %Process noise (the 'physics' noise) and initial noise
-angular_acc_noise = 10*ones(3,1);
 TUNING = 1; %Can modify this as a way to tune the kalman filter
+angular_acc_noise = 10*ones(3,1);
 process_noise_variance = TUNING*[1;1;1;angular_acc_noise]; % [x,y,z,p,q,u] %this is only the noise in the acceleration
 initial_noise = 0.000001; % Effectively zero
 
@@ -57,7 +57,7 @@ U_initial = [0;0;9.81;0]; %In terms of new control scheme
 %% Sensors
 
 % Variance of sensors
-imu_variance = [0.0037,0.0037,0.0037,0.1225,0.1225,0.1225,0.0029,0.0029,0.0029]; %[euler angles (rad), linear acceleration(m/s^2), angular velocity(rad/s)]
+imu_variance =  [0.0037,0.0037,0.0037,0.1225,0.1225,0.1225,0.0029,0.0029,0.0029]; %[euler angles (rad), linear acceleration(m/s^2), angular velocity(rad/s)]
 barometer_variance = [0.0625]; % (m) - 0.25m error
 gps_variance = 0.0025 * ones(1,3); % (m) - 0.05m error
 

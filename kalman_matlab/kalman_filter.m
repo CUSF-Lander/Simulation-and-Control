@@ -50,10 +50,10 @@ function [x_estimate, last_gps_val] = kalman_filter(x_estimate, inputs, last_gps
 
     x_estimate = x_pred + kf * (innov) + g_correction;
 
-    fprintf('\n\nPredicted z acceleration  = %f', x_pred(15));
-    fprintf('\nEstimated z acceleration  = %f', x_estimate(15));
+    %fprintf('\n\nPredicted z acceleration  = %f', x_pred(15));
+    %fprintf('\nEstimated z acceleration  = %f', x_estimate(15));
     delta = x_pred(15) - x_estimate(15);
-    fprintf('\nDelta z accceleration = %f', delta);
+    %fprintf('\nDelta z accceleration = %f', delta);
 end
 
  
